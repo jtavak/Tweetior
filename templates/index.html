@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta property="og:url"                content="http://www.tweetior.com/" />
+    <meta property="og:title"              content="Tweetior" />
+    <meta property="og:description"        content="Create a rhyming poem from your favorite tweetiors tweets!" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121876001-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-121876001-1');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+
+<div data-role="page">
+    <div data-role="header">
+        <h1>Tweetior</h1>
+    </div>
+
+    <div data-role="main" class="ui-content">
+        <h3>Create a poem by your favorite Tweetiors!</h3>
+        <h3>(Real tweets turned into poems instantly!)</h3>
+        <form method="post" action="">
+            <div data-role="rangeslider">
+                <label for="min_words_per_line">Words per line:</label>
+                <input type="range" name="min_words_per_line" id="min_words_per_line" value="{{ min_words }}" min="5" max="15">
+                <label for="max_words_per_line">Words per line:</label>
+                <input type="range" name="max_words_per_line" id="max_words_per_line" value="{{ max_words }}" min="5" max="15">
+            </div>
+            <select class="form-control" id="tweeter" name='tweeter'>
+                {{ choices|safe }}
+            </select>
+            <input type="submit" data-inline="true" value="Create New Poem">
+        </form>
+        <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fwww.tweetior.com&layout=button_count&size=large&mobile_iframe=true&width=84&height=28&appId" width="84" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="{{ twitter_poem|join('; '|safe) }}" data-hashtags="tweetior" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <p>{{ poem|join('<br>'|safe) }}</p>
+        <p>For any questions or suggestions email tweetior@gmail.com</p>
+    </div>
+</div>
+
+</body>
+</html>
